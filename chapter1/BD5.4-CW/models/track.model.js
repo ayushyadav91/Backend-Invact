@@ -1,7 +1,8 @@
-let { DataTypes, Sequelize } = require("../lib/connectDB");
+let { DataTypes, sequelize } = require("../lib/connectDB");
 
 
-let track = Sequelize.define("track", {
+
+let track = sequelize.define("track", {
   name: DataTypes.TEXT,
   genre: DataTypes.TEXT,
   release_year: DataTypes.INTEGER,

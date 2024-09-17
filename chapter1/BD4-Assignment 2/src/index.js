@@ -54,7 +54,9 @@ app.get("/games/details/:id", async (req ,res)=>{
      }
 })
 
-
+//Exercise 3: Get Games by Genre
+>
+//Exercise 4: Get Games by Platform
    app.listen(PORT, () => {
      console.log(`Server is running on port ${PORT}`);
    });
