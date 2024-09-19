@@ -3,18 +3,19 @@ let { DataTypes, sequelize } = require("../lib/connectDB");
 let user = sequelize.define("user", {
   username: {
     type: DataTypes.STRING,
+    allowNull: false,
     unique: true,
+
   },
   email: {
     type: DataTypes.STRING,
-    unique: true,  // Corrected spelling
-    validate: {
-      isEmail: true,
-    },
+    allowNull: false,
+    unique: true,
    
   },
-  password: {  // Corrected typo
+  password: {  
     type: DataTypes.STRING,
+    allowNull: false,
 
   },
 });

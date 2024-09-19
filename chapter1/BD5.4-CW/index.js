@@ -1,6 +1,7 @@
 const express = require('express')
 let {track} = require('./models/track.model.js');
 let {user} = require('./models/user.model.js');
+let {like} = require('./models/like.model.js');
 let {sequelize, sequelizer} = require("./lib/connectDB.js");
 const { UPDATE } = require('sequelize/lib/query-types');
 const { where } = require('sequelize');
@@ -223,7 +224,7 @@ async function addNewUser(newUser) {
          return res.status(404).json({ message: "User not created." });
        }
    
-       return res.status(200).json(result); // 201 Created status for successful creation
+       return res.status(200).json(result); 
      } catch (error) {
        res.status(500).json({ error: error.message });
      }
