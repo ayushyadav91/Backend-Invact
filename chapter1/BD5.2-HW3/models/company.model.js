@@ -20,14 +20,14 @@ const Company = sequelize.define('Company', {
        allowNull: false,
      },
      revenue: {
-       type: DataTypes.FLOAT, // use FLOAT for large numbers like revenue
+       type: DataTypes.FLOAT, 
        allowNull: false,
        validate: {
-         min: 0, // revenue can't be negative
+         min: 0, 
        },
      },
    }, {
-     timestamps: true, // to include createdAt and updatedAt fields
+     timestamps: true, 
    });
    
    module.exports = {Company};

@@ -1,7 +1,7 @@
-const sequezlier = require("sequelize");
+const {Sequezlie} = require("sequelize");
 
-const sequelize = new sequezlier({
+const sequelize = new Sequezlie({
      dialect:'sqlite',
      Storage:'./db/database.sqlite',
 })
-module.exports = {DataTypes:DataTypes.sequezlier,sequelize};
+module.exports = {DataTypes : Sequelize.DataTypes,sequelize};

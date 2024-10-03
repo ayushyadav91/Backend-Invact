@@ -210,8 +210,7 @@ async function addNewUser(newUser) {
      }
    }
    
-   // POST endpoint to create a new user
-   app.post("/users/new", async (req, res) => {
+ app.post("/users/new", async (req, res) => {
      try {
        let newUser = req.body;
        if (!newUser) {
@@ -223,15 +222,37 @@ async function addNewUser(newUser) {
        if (!result) {
          return res.status(404).json({ message: "User not created." });
        }
-   
        return res.status(200).json(result); 
      } catch (error) {
        res.status(500).json({ error: error.message });
      }
    });
-   
 
-const PORT = 3000;
+
+//Exercise 2: Update user data   
+async function updatedUserById(id,newUserData){
+  let updatedUser = await user.findOne({where:{id}});
+  if(!updatedUser){
+    return {};
+  }
+  updatedUser.set(newUserData);
+  let updatedUserData = await updatedUser.save();
+  return {message:"User Updated successfully", updatedUserData};
+}
+
+app.post("/users/update/:id", async (req ,res)=>{
+  let id = parseInt(req.params.id)
+  let NewUserData = req.body;
+  try{
+   let updatedUser = await updatedUserById(id,NewUserData);
+   res.status(200).json(updatedUser);
+
+  } catch(error){
+    res.status(500).json({error:error.message})
+  }
+})
+
+const PORT = 4000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
