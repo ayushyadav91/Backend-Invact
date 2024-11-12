@@ -1,0 +1,17 @@
+{
+  "name": "ms3-oauth",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "install":"concurrently \"cd oauth-server && npm install\" \"cd oauth-frontend && npm i\"",
+    "dev":"concurrently \"cd oauth-server && npm run dev\" \"cd oauth-frontend && npm run dev\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "concurrently": "^9.1.0"
+  }
+}
