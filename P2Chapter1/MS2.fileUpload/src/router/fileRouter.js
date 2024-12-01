@@ -1,12 +1,16 @@
-import multer from 'multer';
-import { Router } from 'express'; 
-import upload from '../middleware/fileUpload.js';
-import { UNEXPECTED_FILE_TYPE } from '../constants/file.js';
-import { fileController } from "../controllers/fileControllers.js"; // Correcting the typo in the fileController import
+const multer= require('multer');
+const { Router }= require('express'); 
+const upload =require('../middleware/fileUpload.js');
+const { UNEXPECTED_FILE_TYPE }= require('../constants/file.js');
+const { fileController }= require("../controllers/fileControllers.js"); // Correcting the typo in the fileController const
+const { imageResize } =require('../middleware/imageResize.js');
+const { isFilePresent }  = require('../middleware/validators/isFilePresent.js');
+const authenticateJWT =  require('../middleware/authentication.js');
 
-export const fileRouter = Router();
 
-fileRouter.post('/upload', function(req, res, next) {
+const fileRouter = Router();
+
+fileRouter.post('/upload',authenticateJWT, function(req, res, next) {
   upload(req, res, function(err) {
     if (err instanceof multer.MulterError) {
       if (err.code === UNEXPECTED_FILE_TYPE) {
@@ -17,6 +21,6 @@ fileRouter.post('/upload', function(req, res, next) {
     } else if (err) {
       return res.status(500).json({ error: { description: 'Unknown error' } });
     }
-    next();
+    next(); 
   });
-}, fileController);
+}, fileController,imageResize,isFilePresent);

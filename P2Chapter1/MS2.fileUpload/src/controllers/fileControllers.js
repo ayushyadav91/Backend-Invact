@@ -1,6 +1,6 @@
-import {cloudinaryUpload} from "../service/fileService.js";
+const {cloudinaryUpload} = require("../service/fileService.js");
 
-export const fileController = async (req ,res) =>{
+const fileController = async (req ,res) =>{
      try{
    if(!req.files){
    return res.status(400).josn({error:{description:"File not present in the request body."}});
@@ -17,3 +17,4 @@ export const fileController = async (req ,res) =>{
      }
      
 };
+module.exports = {fileController};

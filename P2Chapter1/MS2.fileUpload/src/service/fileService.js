@@ -1,7 +1,7 @@
-import { uploadToCloudinary } from "../config/cloudinary";
-import fs from "fs";
+const { uploadToCloudinary }=require("../config/cloudinary.js");
+const fs=require("fs");
 
-export const cloudinaryUpload = async (file) =>{
+ const cloudinaryUpload = async (file) =>{
      try{
           const cloudinaryResponse = await uploadToCloudinary(file.path);
           fs.unlink(file.path, (err)=>{
@@ -14,3 +14,4 @@ export const cloudinaryUpload = async (file) =>{
           console.error(error);
      }
 }
+module.exports = {cloudinaryUpload};

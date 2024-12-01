@@ -103,7 +103,7 @@ app.get("/employees/sort/salary", async (req ,res)=>{
      let order = req.query.order;
      try{
      let employeeSortSarlary = await sortEmployeesSalary(order);
-     res.status(200).json(employeeSortSarlary);
+     res.status(200).json(employeeSortSarlary);{}
      } catch(error){
           res.status(500).json({error:error.message});
      }

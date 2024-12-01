@@ -1,16 +1,16 @@
-import {v2 as cloudinary}  from "cloudinary";
-import crypto  from "crypto";
+const {cloudinary} = require("cloudinary");
+const crypto = require("crypto");
 require('dotenv').config();
 
 
-export const cloudinaryConfig = ()=>{
+const cloudinaryConfig = ()=>{
      cloudinary.config({
           clound:process.env.CLOUDINARY_CLOUD_NAME,
           api_key:process.env.CLOUDINARY_API_KEY,
           api_secret:process.env.CLOUDINARY_API_SECRET,
      });
 };
-export const generateSignature = ()=>{
+ const generateSignature = ()=>{
      const {api_secret} = cloudinary.config();
      const sortedParams = Object.keys(paramsToSign).sort().map((key)=>`${key}=${paramstoSign[key]}`).join("&");
 
@@ -23,7 +23,7 @@ export const generateSignature = ()=>{
      return signature; 
 };
 
-export const uploadToCloudinary = async (filePath)=>{
+ const uploadToCloudinary = async (filePath)=>{
      try{
           cloudinaryConfig();
           const timestamp = Math.round((new Date()).getTime()/1000);
@@ -43,3 +43,5 @@ export const uploadToCloudinary = async (filePath)=>{
      
      }
 }
+
+module.exports = {uploadToCloudinary};
