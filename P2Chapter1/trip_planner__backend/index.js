@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 
 const {createItinerary,getItinerary} = require("./controllers/dataController");
-const {getFlights,getHotels,getSites} = require("./controllers/itineraryController");
+const {getFlights,getHotels,getSites, getflightsByOriginAndDestination, getHotelsByLocation, getSitesBylocation} = require("./controllers/itineraryController");
 const { sequelize } = require("./models");
 
 
@@ -19,6 +19,11 @@ app.get("/itinerary/:id",getItinerary);
 app.get("/data/flights",getFlights);
 app.get("/data/hotels",getHotels);
 app.get("/data/sites",getSites);
+app.get("/flights/search",getflightsByOriginAndDestination);
+app.get("/hotels/search",getHotelsByLocation);
+app.get("/sites/search",getSitesBylocation);
+
+
 
 sequelize.authenticate().then(()=>{
      console.log("Connection to database established successfully");
@@ -28,6 +33,6 @@ sequelize.authenticate().then(()=>{
  
 
 
-app.listen(process.env.PORT || 3000, ()=>{
-     console.log("Server started on port 3000");
+app.listen(process.env.PORT , ()=>{
+     console.log(`Server started on port ${process.env.PORT}`);
 });  

@@ -1,14 +1,14 @@
 module.exports = (sequelize, DataTypes) => {
-     const MerchandiseStall = sequelize.define('MerchandiseStall', {
+     const merchandiseStall = sequelize.define('merchandiseStall', {
        stallName: DataTypes.STRING,
        itemAvailable: DataTypes.STRING,
        price: DataTypes.FLOAT
      });
    
-     MerchandiseStall.associate = (models) => {
-       MerchandiseStall.belongsTo(models.Tour, { foreignKey: 'tourId' });
-     };
+    //  merchandiseStall.associate = (models) => {
+    //    merchandiseStall.belongsTo(models.tour, { foreignKey: 'tourId' , as: 'tour' });
+    //  };
    
-     return MerchandiseStall;
+     return merchandiseStall;
    };
    

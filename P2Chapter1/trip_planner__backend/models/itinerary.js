@@ -1,9 +1,16 @@
 module.exports = (sequelize, DataTypes) => {
-	const Itinerary = sequelize.define('itinerary', {
+	const itinerary = sequelize.define('itinerary', {
 	  name: DataTypes.STRING,
 	}, {
 	  timestamps: true,
 	});
-	return Itinerary;
+
+	itinerary.associate =  (models) =>{
+		itinerary.hasMany(models.itineraryItem, {
+			foreignKey: 'itineraryId',
+		
+		});
+	};
+	return itinerary;
    };
    

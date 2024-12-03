@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const ItineraryItem = sequelize.define(
+  const itineraryItem = sequelize.define(
     "itineraryItem",
     {
       itineraryId: {
@@ -12,11 +12,9 @@ module.exports = (sequelize, DataTypes) => {
       },
       itemId: {
         type: DataTypes.INTEGER,
-        allowNull: false,
       },
       type: {
         type: DataTypes.STRING,
-        allowNull: false,
       },
     },
     {
@@ -25,9 +23,9 @@ module.exports = (sequelize, DataTypes) => {
   );
 
   // Define associations here
-  ItineraryItem.associate = (models) => {
-    ItineraryItem.belongsTo(models.itinerary, { foreignKey: "itineraryId" });
+  itineraryItem.associate = (models) => {
+    itineraryItem.belongsTo(models.itinerary, { foreignKey: "itineraryId" });
   };
 
-  return ItineraryItem;
+  return itineraryItem;
 };

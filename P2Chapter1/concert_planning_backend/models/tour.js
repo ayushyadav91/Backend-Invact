@@ -1,30 +1,27 @@
 // models/tour.js
 module.exports = (sequelize, DataTypes) => {
-  const Tour = sequelize.define('Tour', {
+  const tour = sequelize.define('tour', {
     name: {
-      type: DataTypes.STRING,
+    type: DataTypes.STRING,
       allowNull: false
     },
     createdAt: {
-      type: DataTypes.DATE,
+    type: DataTypes.DATE,
       allowNull: false,
       defaultValue: DataTypes.NOW
     },
     updatedAt: {
-      type: DataTypes.DATE,
+    type: DataTypes.DATE,
       allowNull: false,
       defaultValue: DataTypes.NOW
     }
-  }, {
-    tableName: 'tours' // Ensure table name is explicitly set to match migration
   });
 
   // Association setup
-  Tour.associate = (models) => {
-    Tour.hasMany(models.Concert, { foreignKey: 'tourId' });
-    Tour.hasMany(models.MerchandiseStall, { foreignKey: 'tourId' });
-    Tour.hasMany(models.AfterParty, { foreignKey: 'tourId' });
+tour.associate = (models) => {
+  tour.hasMany(models.tourItem, { foreignKey: 'tourId'});
+ 
   };
 
-  return Tour;
+  return tour;
 };

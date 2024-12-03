@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-     const Concert = sequelize.define('Concert', {
+     const concert = sequelize.define('concert', {
        artist: DataTypes.STRING,
        venue: DataTypes.STRING,
        city: DataTypes.STRING,
@@ -8,10 +8,10 @@ module.exports = (sequelize, DataTypes) => {
        seatCategory: DataTypes.STRING
      });
    
-     Concert.associate = (models) => {
-       Concert.belongsTo(models.Tour, { foreignKey: 'tourId' });
-     };
+    //  concert.associate = (models) => {
+    //    concert.belongsTo(models.tour, { foreignKey: 'tourId', as: 'tour' });
+    //  };
    
-     return Concert;
+     return concert;
    };
    

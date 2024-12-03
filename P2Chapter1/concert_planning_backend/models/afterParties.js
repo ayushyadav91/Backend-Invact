@@ -1,15 +1,15 @@
 module.exports = (sequelize, DataTypes) => {
-     const AfterParty = sequelize.define('AfterParty', {
+     const afterParties = sequelize.define('afterParties', {
        location: DataTypes.STRING,
        city: DataTypes.STRING,
        date: DataTypes.DATE,
        ticketPrice: DataTypes.FLOAT
      });
    
-     AfterParty.associate = (models) => {
-       AfterParty.belongsTo(models.Tour, { foreignKey: 'tourId' });
-     };
+    //  afterParties.associate = (models) => {
+    //    afterParties.belongsTo(models.tour, { foreignKey: 'tourId' });
+    //  };
    
-     return AfterParty;
+     return afterParties;
    };
    

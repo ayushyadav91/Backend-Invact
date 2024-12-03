@@ -1,10 +1,10 @@
 module.exports = (sequelize, DataTypes) => {
-     const TourItem = sequelize.define('TourItem', {
+     const tourItem = sequelize.define('tourItem', {
        tourId: {
          type: DataTypes.INTEGER,
          allowNull: false,
          references: {
-           model: 'Tours',
+           model: 'tour',
            key: 'id'
          }
        },
@@ -16,12 +16,11 @@ module.exports = (sequelize, DataTypes) => {
          type: DataTypes.STRING,
          allowNull: false
        }
-     }, {});
-   
-     TourItem.associate = (models) => {
-       TourItem.belongsTo(models.Tour, { foreignKey: 'tourId', as: 'tour' });
+     });
+     tourItem.associate = (models) => {
+       tourItem.belongsTo(models.tour, { foreignKey: 'tourId' });
      };
    
-     return TourItem;
+     return tourItem;
    };
    

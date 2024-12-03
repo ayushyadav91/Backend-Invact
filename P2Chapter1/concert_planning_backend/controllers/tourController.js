@@ -1,10 +1,29 @@
-const { Concert, MerchandiseStall, AfterParty } = require('../models');
+const { concerts, merchandiseStalls, afterParties } = require('../models');
+const axios = require('axios');
+require('dotenv').config();
 
+
+
+const axiosInstance = axios.create({
+ baseURL:process.env.MICROSERVICE_BASE_URL,
+ headers:{
+   'Content-Type':'application/json',
+   CLIENT_KEY:process.env.CLIENT_KEY,
+   CLIENT_SECRET:process.env.CLIENT_SECRET
+ }
+});
+
+  
 // Get all concerts
 const getConcerts = async (req, res) => {
   try {
-    const concerts = await Concert.findAll();
-    res.status(200).json(concerts);
+     const response = await axiosInstance.get('/concerts',{
+    headers:{
+      CLIENT_KEY:process.env.CLIENT_KEY,
+   CLIENT_SECRET:process.env.CLIENT_SECRET
+    }
+    });
+    res.status(200).json(response.data);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Error retrieving concerts', error: error.message });
@@ -14,8 +33,9 @@ const getConcerts = async (req, res) => {
 // Get all merchandise stalls
 const getMerchandiseStalls = async (req, res) => {
   try {
-    const merchandiseStalls = await MerchandiseStall.findAll();
-    res.status(200).json(merchandiseStalls);
+    const response = await axiosInstance.get('/merchandiseStalls');
+
+    res.status(200).json(response.data);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Error retrieving merchandise stalls', error: error.message });
@@ -25,8 +45,8 @@ const getMerchandiseStalls = async (req, res) => {
 // Get all after-parties
 const getAfterParties = async (req, res) => {
   try {
-    const afterParties = await AfterParty.findAll();
-    res.status(200).json(afterParties);
+    const response = await axiosInstance.get('/afterParties');
+    res.status(200).json(response.data);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Error retrieving after-parties', error: error.message });
